@@ -1,0 +1,8 @@
+[package]
+name = "libpandemonium"
+version = "0.0.1"
+authors = ["Andrey Cherkashin"]
+
+[lib]
+name = "libpandemonium"
+crate-type = ["dylib"]
