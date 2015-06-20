@@ -2,7 +2,23 @@
 name = "libpandemonium"
 version = "0.0.1"
 authors = ["Andrey Cherkashin"]
-
 [lib]
-name = "libpandemonium"
-crate-type = ["dylib"]
+name = "pandemonium"
+crate-type = ["dylib", "rlib"]
+
+
+[dependencies]
+time = "0.1"
+libc = "0.1"
+
+[features]
+default = ["sysinfo"]
+sysinfo = []
+
+
+[profile.release]
+opt-level = 3
+debug = false
+rpath = false
+lto = true
+debug-assertions = false

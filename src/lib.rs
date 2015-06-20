@@ -1,13 +1,12 @@
-#![crate_name = "libpandemonium"]
 #![crate_type = "dylib"]
-#![cfg(freebsd)]
 #![allow(non_camel_case_types)]
 #![deny(warnings)]
 
-extern crate libc;
-pub use libc::{c_int, c_void};
+extern crate time;
+
+#[cfg(feature = "sysinfo")]
+pub mod sysinfo;
 
 #[test]
-fn it_works() {
-    assert!(true,true);
+fn it_hello() {
 }
