@@ -6,6 +6,8 @@ extern crate time;
 
 #[cfg(feature = "sysinfo")]
 pub mod sysinfo;
+#[cfg(feature = "zfs")]
+pub mod zfs;
 
 #[test]
 fn it_hello() {
