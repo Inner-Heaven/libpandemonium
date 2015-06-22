@@ -12,9 +12,11 @@ time = "0.1"
 libc = "0.1"
 
 [features]
-default = ["sysinfo", "zfs]
+default = ["sysinfo", "zfs"]
 sysinfo = []
-zfs = []
+zfs = ["zfs_libzfs"]
+zfs_open3 = []
+zfs_libzfs =[]
 
 
 [profile.release]

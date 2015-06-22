@@ -1,6 +1,7 @@
 #![crate_type = "dylib"]
 #![allow(non_camel_case_types)]
 #![deny(warnings)]
+#![allow(dead_code)]
 
 extern crate time;
 
@@ -8,7 +9,3 @@ extern crate time;
 pub mod sysinfo;
 #[cfg(feature = "zfs")]
 pub mod zfs;
-
-#[test]
-fn it_hello() {
-}
