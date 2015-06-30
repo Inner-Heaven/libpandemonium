@@ -1,22 +1,24 @@
 [package]
 name = "libpandemonium"
 version = "0.0.1"
-authors = ["Andrey Cherkashin"]
+authors = ["Andrey Cherkashin <with.out@me.com>"]
+
 [lib]
 name = "pandemonium"
-crate-type = ["dylib", "rlib"]
+crate-type = ["rlib"]
 
 
 [dependencies]
 time = "0.1"
 libc = "0.1"
+errno = "*"
+libjail-sys = { path = "libjail-sys" }
 
 [features]
-default = ["sysinfo", "zfs"]
+default = ["sysinfo", "jail"]
 sysinfo = []
-zfs = ["zfs_libzfs"]
-zfs_open3 = []
-zfs_libzfs =[]
+zfs = []
+jail = []
 
 
 [profile.release]

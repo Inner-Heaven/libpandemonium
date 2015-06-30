@@ -1,0 +1,15 @@
+[package]
+name        = "libjail-sys"
+version     = "0.1.0"
+authors     = ["Andrey Cherkashin <andoriyu@gmail.com>"]
+links       = "jail"
+build       = "build.rs"
+license     = "BSD"
+description = "Native bindings to the libjail from FreeBSD project"
+
+[lib]
+name  = "libjail_sys"
+path  = "lib.rs"
+
+[dependencies]
+libc  = "0.1"
