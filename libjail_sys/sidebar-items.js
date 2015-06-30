@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["jail_getid",""],["jail_getname",""],["jail_getv",""],["jail_setv",""],["jailparam_all",""],["jailparam_export",""],["jailparam_free",""],["jailparam_get",""],["jailparam_import",""],["jailparam_import_raw",""],["jailparam_init",""],["jailparam_set",""]],"static":[["jail_errmsg",""]],"struct":[["Jailparam",""]]});

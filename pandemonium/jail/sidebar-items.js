@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["ffi",""]],"struct":[["Prison","Structure represents prison. Very simple wrapper around jail struct from libjail."]]});
