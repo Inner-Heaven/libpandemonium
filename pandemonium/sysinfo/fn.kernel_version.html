@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `os_get_time` fn in crate `pandemonium`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, os_get_time">
+    <meta name="description" content="API documentation for the Rust `kernel_version` fn in crate `pandemonium`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, kernel_version">
 
-    <title>pandemonium::sysinfo::os_get_time - Rust</title>
+    <title>pandemonium::sysinfo::kernel_version - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../../main.css">
 
@@ -26,7 +26,7 @@
 
     <section class="sidebar">
         
-        <p class='location'><a href='../index.html'>pandemonium</a>::<wbr><a href='index.html'>sysinfo</a></p><script>window.sidebarCurrent = {name: 'os_get_time', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'><a href='../index.html'>pandemonium</a>::<wbr><a href='index.html'>sysinfo</a></p><script>window.sidebarCurrent = {name: 'kernel_version', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </section>
 
     <nav class="sub">
@@ -41,12 +41,14 @@
     </nav>
 
     <section id='main' class="content fn">
-<h1 class='fqn'><span class='in-band'>Function <a href='../index.html'>pandemonium</a>::<wbr><a href='index.html'>sysinfo</a>::<wbr><a class='fn' href=''>os_get_time</a></span><span class='out-of-band'><span id='render-detail'>
+<h1 class='fqn'><span class='in-band'>Function <a href='../index.html'>pandemonium</a>::<wbr><a href='index.html'>sysinfo</a>::<wbr><a class='fn' href=''>kernel_version</a></span><span class='out-of-band'><span id='render-detail'>
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-148' class='srclink' href='../../src/pandemonium/sysinfo/mod.rs.html#14-23' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub fn os_get_time(clock_id: ClockId) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../time/struct.Timespec.html' title='time::Timespec'>Timespec</a>, <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>&gt;</pre><div class='docblock'><p>Rust wrapper around os_gettime</p>
+        </span><a id='src-194' class='srclink' href='../../src/pandemonium/sysinfo/mod.rs.html#32-36' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub fn kernel_version() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></pre><div class='docblock'><p>Kernel version using getosreldate() call.
+If OSVERSION enviroment varible is set. it will override the getosreldate() return value.
+Returns -1 in case of error.</p>
 </div></section>
     <section id='search' class="content hidden"></section>
 

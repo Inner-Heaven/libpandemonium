@@ -119,7 +119,13 @@
 <span id="77">77</span>
 <span id="78">78</span>
 <span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
 </pre><pre class='rust '>
+<span class='doccomment'>//! # FreeBSD&#39;s libc binding for rust.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Used to abtain various information about running system. Pretty much empty as it was used to</span>
+<span class='doccomment'>//! learn about Rust&#39;s FFI abilities.</span>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>time</span>;
 <span class='kw'>use</span> <span class='ident'>time</span>::<span class='ident'>Timespec</span>;
 
@@ -139,23 +145,21 @@
         }
     }
 }
-<span class='doccomment'>/// Shows system uptime using default system clock</span>
+<span class='doccomment'>/// Show system uptime using default system clock</span>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>uptime</span>() <span class='op'>-&gt;</span> <span class='ident'>Timespec</span> {
     <span class='kw'>return</span> <span class='ident'>os_get_time</span>(<span class='ident'>ClockId</span>::<span class='ident'>Uptime</span>).<span class='ident'>unwrap</span>();
 }
 
-<span class='doccomment'>/// Returns Kernel version using getosreldate() call.</span>
+<span class='doccomment'>/// Kernel version using getosreldate() call.</span>
 <span class='doccomment'>/// If OSVERSION enviroment varible is set. it will override the getosreldate() return value.</span>
 <span class='doccomment'>/// Returns -1 in case of error.</span>
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_kernel_version</span>() <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
+<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>kernel_version</span>() <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
     <span class='kw'>unsafe</span> {
         <span class='kw'>return</span> <span class='ident'>ffi_os_get_reldate</span>()
     }
 }
 
 <span class='doccomment'>/// Return Userland version using `uname -U` command.</span>
-<span class='doccomment'>/// The only possible way of getting this value...Sorry Darth Lis...</span>
-
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_userland_version</span>() <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
     <span class='kw'>let</span> <span class='ident'>cmd</span> <span class='op'>=</span> <span class='ident'>Command</span>::<span class='ident'>new</span>(<span class='string'>&quot;uname&quot;</span>)
         .<span class='ident'>arg</span>(<span class='string'>&quot;-U&quot;</span>)
@@ -185,18 +189,18 @@
 
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>it_should_show_kernel_version</span>() {
-    <span class='kw'>let</span> <span class='ident'>kernver</span> <span class='op'>=</span> <span class='ident'>get_kernel_version</span>();
+    <span class='kw'>let</span> <span class='ident'>kernver</span> <span class='op'>=</span> <span class='ident'>kernel_version</span>();
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>kernver</span> <span class='op'>&gt;</span> <span class='number'>1</span>);
 }
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>it_should_show_userland_version</span>() {
-    <span class='kw'>let</span> <span class='ident'>userver</span> <span class='op'>=</span> <span class='ident'>get_userland_version</span>();
+    <span class='kw'>let</span> <span class='ident'>userver</span> <span class='op'>=</span> <span class='ident'>userland_version</span>();
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>userver</span> <span class='op'>&gt;</span> <span class='number'>1</span>);
 }
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>system_is_not_fucked</span>() {
-    <span class='kw'>let</span> <span class='ident'>userver</span> <span class='op'>=</span> <span class='ident'>get_userland_version</span>();
-    <span class='kw'>let</span> <span class='ident'>kernver</span> <span class='op'>=</span> <span class='ident'>get_kernel_version</span>();
+    <span class='kw'>let</span> <span class='ident'>userver</span> <span class='op'>=</span> <span class='ident'>userland_version</span>();
+    <span class='kw'>let</span> <span class='ident'>kernver</span> <span class='op'>=</span> <span class='ident'>kernel_version</span>();
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>userver</span> <span class='op'>&lt;=</span> <span class='ident'>kernver</span>);
 }
 </pre>

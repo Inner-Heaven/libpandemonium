@@ -45,26 +45,30 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-47' class='srclink' href='../../src/pandemonium/sysinfo/mod.rs.html#1-79' title='goto source code'>[src]</a></span></h1>
-<h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+        </span><a id='src-47' class='srclink' href='../../src/pandemonium/sysinfo/mod.rs.html#1-81' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'>
+<h1 id="freebsd&#39;s-libc-binding-for-rust." class='section-header'><a
+                           href="#freebsd&#39;s-libc-binding-for-rust.">FreeBSD&#39;s libc binding for rust.</a></h1>
+<p>Used to abtain various information about running system. Pretty much empty as it was used to
+learn about Rust&#39;s FFI abilities.</p>
+</div><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
 <table>
                     <tr class=' module-item'>
-                        <td><a class='fn' href='fn.get_kernel_version.html'
-                               title='pandemonium::sysinfo::get_kernel_version'>get_kernel_version</a></td>
+                        <td><a class='fn' href='fn.get_userland_version.html'
+                               title='pandemonium::sysinfo::get_userland_version'>get_userland_version</a></td>
                         <td class='docblock short'>
-                             <p>Returns Kernel version using getosreldate() call.
-If OSVERSION enviroment varible is set. it will override the getosreldate() return value.
-Returns -1 in case of error.</p>
+                             <p>Return Userland version using <code>uname -U</code> command.</p>
 
                         </td>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='fn' href='fn.get_userland_version.html'
-                               title='pandemonium::sysinfo::get_userland_version'>get_userland_version</a></td>
+                        <td><a class='fn' href='fn.kernel_version.html'
+                               title='pandemonium::sysinfo::kernel_version'>kernel_version</a></td>
                         <td class='docblock short'>
-                             <p>Return Userland version using <code>uname -U</code> command.
-The only possible way of getting this value...Sorry Darth Lis...</p>
+                             <p>Kernel version using getosreldate() call.
+If OSVERSION enviroment varible is set. it will override the getosreldate() return value.
+Returns -1 in case of error.</p>
 
                         </td>
                     </tr>
@@ -82,7 +86,7 @@ The only possible way of getting this value...Sorry Darth Lis...</p>
                         <td><a class='fn' href='fn.uptime.html'
                                title='pandemonium::sysinfo::uptime'>uptime</a></td>
                         <td class='docblock short'>
-                             <p>Shows system uptime using default system clock</p>
+                             <p>Show system uptime using default system clock</p>
 
                         </td>
                     </tr>
