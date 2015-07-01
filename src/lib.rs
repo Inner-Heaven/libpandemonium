@@ -10,10 +10,11 @@
 extern crate time;
 extern crate libc;
 extern crate errno;
+
 pub mod errors;
+pub mod helpers;
 
 #[cfg(feature = "sysinfo")]
 pub mod sysinfo;
 #[cfg(feature = "jail")]
 pub mod jail;
-

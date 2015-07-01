@@ -5,7 +5,7 @@ use pandemonium::jail::*;
 fn test_low_lever_iterator() {
     let iter = ffi::jid_iter();
     let jail_names: Vec<_> = iter.collect();
-    assert_eq!(jailNames.len(), 1);
+    assert_eq!(jail_names.len(), 1);
 }
 #[test]
 fn test_crud() {

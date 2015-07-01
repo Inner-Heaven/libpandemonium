@@ -36,7 +36,7 @@ pub fn kernel_version() -> i32 {
 }
 
 /// Return Userland version using `uname -U` command.
-pub fn get_userland_version() -> i32 {
+pub fn userland_version() -> i32 {
     let cmd = Command::new("uname")
         .arg("-U")
         .output();
