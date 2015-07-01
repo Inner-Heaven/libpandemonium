@@ -1,5 +1,5 @@
 use std::ffi::CStr;
-use libc::c_char;
+use libc::{c_char};
 
 pub fn from_char_to_string(from: *const c_char) -> Option<String>{
     if from.is_null() {
