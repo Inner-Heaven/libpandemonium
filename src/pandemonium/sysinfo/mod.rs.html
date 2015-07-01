@@ -160,7 +160,7 @@
 }
 
 <span class='doccomment'>/// Return Userland version using `uname -U` command.</span>
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_userland_version</span>() <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
+<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>userland_version</span>() <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
     <span class='kw'>let</span> <span class='ident'>cmd</span> <span class='op'>=</span> <span class='ident'>Command</span>::<span class='ident'>new</span>(<span class='string'>&quot;uname&quot;</span>)
         .<span class='ident'>arg</span>(<span class='string'>&quot;-U&quot;</span>)
         .<span class='ident'>output</span>();
