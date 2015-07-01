@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Dataset",""]],"type":[["ZfsResult","Zfs module generic result type."]],"enum":[["ZfsError","All kinds of ZFS errors"]]});
