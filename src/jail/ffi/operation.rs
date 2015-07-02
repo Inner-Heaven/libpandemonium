@@ -19,8 +19,8 @@ impl JailOperation {
     pub fn new(name: String) -> Result<JailOperation, Error> {
         let mut operation = JailOperation { jps: Vec::new(), executed: false };
         match operation.add_jailparam_with_value(&ParamKey::Name, &name) {
-            Ok(_)    => return Ok(operation),
-            Err(err) => return Err(err)
+            Ok(_)    => Ok(operation),
+            Err(err) => Err(err)
         }
     }
     /// executes read operation on jail and returns Vector of values for requested keys.
@@ -33,28 +33,27 @@ impl JailOperation {
                     let ptr = jp.clone();
                     export.push(JailOperation::jp_export(ptr));
                 }
-                return Ok(export);
+                Ok(export)
             },
-            Err(err) => { return Err(err) }
+            Err(err) => { Err(err) }
         }
     }
 
     pub fn add_jailparams(&mut self, params: Vec<ParamKey>) -> Result<(), Error> {
-        //let err: Option<Error> = None;
-        for param in params.iter() {
+        for param in &params {
             if let Err(err) = self.add_jailparam(param) {
                 return Err(err);
             }
         }
-        return Ok(());
+        Ok(())
     }
-    pub fn add_jaiparams_with_values(&mut self, params: Vec<(ParamKey, String)>) -> Result<(), Error> {
-        for pair in params.iter() {
+    pub fn add_jailparams_with_values(&mut self, params: Vec<(ParamKey, String)>) -> Result<(), Error> {
+        for pair in &params {
             if let Err(err) = self.add_jailparam_with_value(&pair.0, &pair.1) {
                 return Err(err);
             }
         }
-        return Ok(());
+        Ok(())
     }
 
     /// Use this if you want _set_ value to jail
@@ -62,9 +61,9 @@ impl JailOperation {
         match JailOperation::jp_for_value(&key, &value) {
             Ok(jp) => {
                 self.jps.push(jp);
-                return Ok(());
+                Ok(())
             },
-            Err(err) => { return Err(err); }
+            Err(err) => { Err(err) }
         }
     }
     /// Use this if you want _get_ value from jail
@@ -72,9 +71,9 @@ impl JailOperation {
         match JailOperation::jp_for_key(key) {
             Ok(jp) => {
                 self.jps.push(jp);
-                return Ok(());
+                Ok(())
             },
-            Err(err) => { return Err(err); }
+            Err(err) => { Err(err) }
         }
     }
     fn jp_get(&mut self) -> Result<(), Error> {
@@ -85,9 +84,9 @@ impl JailOperation {
         let result = unsafe { raw::jailparam_set(self.jps.as_mut_ptr() as *mut c_void,
                                          self.jps.len() as c_uint, 0 as c_int) };
         if result == 0 {
-            return Ok(());
+            Ok(())
         } else {
-            return Err(Error::last_error());
+            Err(Error::last_error())
         }
     }
     /// Shortcut to initializ jailparam and get pointer.
@@ -96,9 +95,9 @@ impl JailOperation {
         let jp: *mut raw::JailParam = ptr::null_mut();
         let result = unsafe {  raw::jailparam_init(jp, key_c) };
         if result == 0 {
-            return Ok(jp);
+            Ok(jp)
         } else {
-            return Err(Error::last_error());
+            Err(Error::last_error())
         }
     }
     /// The same as jp_for_key, but also imports value into jailparam.
@@ -108,13 +107,13 @@ impl JailOperation {
                 let value_c = CString::new(value.to_string()).unwrap().as_ptr();
                 let result = unsafe { raw::jailparam_import(jp, value_c) };
                 if result == 0 {
-                    return Ok(jp);
+                    Ok(jp)
                 } else {
-                    return Err(Error::last_error());
+                    Err(Error::last_error())
                 }
             },
             Err(err) => {
-                return Err(err);
+                Err(err)
             }
         }
     }
@@ -122,7 +121,7 @@ impl JailOperation {
     /// Safe wrapper for jailparam_export.
     fn jp_export(jp: *mut c_void) -> Option<String> {
         let result = unsafe { raw::jailparam_export(jp) };
-        return ::helpers::from_char_to_string(result);
+        ::helpers::from_char_to_string(result)
     }
 }
 /// Since we have to call jailparam_free() everytime we done using it.
