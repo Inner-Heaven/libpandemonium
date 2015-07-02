@@ -2,8 +2,8 @@ use errno::{errno, set_errno, Errno};
 use libc::{c_char, c_int, size_t};
 #[derive(Debug)]
 pub struct Error {
-    klass:      i32,
-    message:     Option<String>
+    pub klass:      i32,
+    pub message:     Option<String>
 }
 impl Error {
     pub fn last_error() -> Error {
