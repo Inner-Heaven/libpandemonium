@@ -59,6 +59,7 @@
 <span id="17">17</span>
 <span id="18">18</span>
 <span id="19">19</span>
+<span id="20">20</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! # FreebSD system libraries binding</span>
 <span class='doccomment'>//!</span>
@@ -72,13 +73,14 @@
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>time</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>errno</span>;
+
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>errors</span>;
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>helpers</span>;
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;sysinfo&quot;</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>sysinfo</span>;
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;jail&quot;</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>jail</span>;
-
 </pre>
 </section>
     <section id='search' class="content hidden"></section>

@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["errors",""],["jail","libjail binding for Rust."],["sysinfo","FreeBSD's libc binding for rust."]]});
+initSidebarItems({"mod":[["errors",""],["helpers",""],["jail","libjail binding for Rust."],["sysinfo","FreeBSD's libc binding for rust."]]});

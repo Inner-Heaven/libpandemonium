@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `JailOperation` struct in crate `pandemonium`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, JailOperation">
+
+    <title>pandemonium::jail::ffi::operation::JailOperation - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='../../../index.html'>pandemonium</a>::<wbr><a href='../../index.html'>jail</a>::<wbr><a href='../index.html'>ffi</a>::<wbr><a href='index.html'>operation</a></p><script>window.sidebarCurrent = {name: 'JailOperation', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../../index.html'>pandemonium</a>::<wbr><a href='../../index.html'>jail</a>::<wbr><a href='../index.html'>ffi</a>::<wbr><a href='index.html'>operation</a>::<wbr><a class='struct' href=''>JailOperation</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-439' class='srclink' href='../../../../src/pandemonium/jail/ffi/operation.rs.html#10-15' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct JailOperation {
+    // some fields omitted
+}</pre><div class='docblock'><p>Safe interface for operation with jails</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../../../../pandemonium/jail/ffi/operation/struct.JailOperation.html' title='pandemonium::jail::ffi::operation::JailOperation'>JailOperation</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(name: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../../../pandemonium/jail/ffi/operation/struct.JailOperation.html' title='pandemonium::jail::ffi::operation::JailOperation'>JailOperation</a>, <a class='struct' href='../../../../pandemonium/errors/struct.Error.html' title='pandemonium::errors::Error'>Error</a>&gt;</code></h4>
+<div class='docblock'><p>Proper way of setting up Operation</p>
+</div><h4 id='method.get' class='method'><code>fn <a href='#method.get' class='fnname'>get</a>(&amp;mut self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;&gt;, <a class='struct' href='../../../../pandemonium/errors/struct.Error.html' title='pandemonium::errors::Error'>Error</a>&gt;</code></h4>
+<div class='docblock'><p>executes read operation on jail and returns Vector of values for requested keys.
+Values returned in the same order they were requested</p>
+</div><h4 id='method.add_jailparams' class='method'><code>fn <a href='#method.add_jailparams' class='fnname'>add_jailparams</a>(&amp;mut self, params: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../../../../pandemonium/jail/ffi/operation/enum.ParamKey.html' title='pandemonium::jail::ffi::operation::ParamKey'>ParamKey</a>&gt;) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='../../../../pandemonium/errors/struct.Error.html' title='pandemonium::errors::Error'>Error</a>&gt;</code></h4>
+<h4 id='method.add_jaiparams_with_values' class='method'><code>fn <a href='#method.add_jaiparams_with_values' class='fnname'>add_jaiparams_with_values</a>(&amp;mut self, params: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(<a class='enum' href='../../../../pandemonium/jail/ffi/operation/enum.ParamKey.html' title='pandemonium::jail::ffi::operation::ParamKey'>ParamKey</a>, <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>)</a>&gt;) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='../../../../pandemonium/errors/struct.Error.html' title='pandemonium::errors::Error'>Error</a>&gt;</code></h4>
+<h4 id='method.add_jailparam_with_value' class='method'><code>fn <a href='#method.add_jailparam_with_value' class='fnname'>add_jailparam_with_value</a>(&amp;mut self, key: &amp;<a class='enum' href='../../../../pandemonium/jail/ffi/operation/enum.ParamKey.html' title='pandemonium::jail::ffi::operation::ParamKey'>ParamKey</a>, value: &amp;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='../../../../pandemonium/errors/struct.Error.html' title='pandemonium::errors::Error'>Error</a>&gt;</code></h4>
+<div class='docblock'><p>Use this if you want <em>set</em> value to jail</p>
+</div><h4 id='method.add_jailparam' class='method'><code>fn <a href='#method.add_jailparam' class='fnname'>add_jailparam</a>(&amp;mut self, key: &amp;<a class='enum' href='../../../../pandemonium/jail/ffi/operation/enum.ParamKey.html' title='pandemonium::jail::ffi::operation::ParamKey'>ParamKey</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='../../../../pandemonium/errors/struct.Error.html' title='pandemonium::errors::Error'>Error</a>&gt;</code></h4>
+<div class='docblock'><p>Use this if you want <em>get</em> value from jail</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Drop.html' title='core::ops::Drop'>Drop</a> for <a class='struct' href='../../../../pandemonium/jail/ffi/operation/struct.JailOperation.html' title='pandemonium::jail::ffi::operation::JailOperation'>JailOperation</a></code></h3><div class='docblock'><p>Since we have to call jailparam_free() everytime we done using it.</p>
+</div><div class='impl-items'><h4 id='method.drop' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Drop.html#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+            <p>
+                Search functions by type signature (e.g.
+                <code>vec -> usize</code>)
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../../../../";
+        window.currentCrate = "pandemonium";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../../jquery.js"></script>
+    <script src="../../../../main.js"></script>
+    
+    <script async src="../../../../search-index.js"></script>
+</body>
+</html>

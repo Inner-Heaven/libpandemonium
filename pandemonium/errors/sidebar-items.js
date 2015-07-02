@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["JailError","NotFound - jail with givin id was not found"]]});
+initSidebarItems({"struct":[["Error",""]]});
