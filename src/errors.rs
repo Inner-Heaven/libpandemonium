@@ -4,8 +4,8 @@ use libc::{c_char, c_int, size_t};
 pub enum Error {
     FFI { klass:      i32,
           message:     Option<String> },
-    StaleOperation,
-    EmptyOperation
+    JailStaleOperation,
+    JailEmptyOperation
 }
 impl Error {
     pub fn last_error() -> Error{

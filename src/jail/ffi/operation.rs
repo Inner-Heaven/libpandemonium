@@ -4,7 +4,7 @@ use std::ffi::{CString};
 use std::ops::Drop;
 use std::ptr;
 use libc::{c_uint, c_void, c_int};
-use errors::Error;
+use errors::{Error;
 use flat_map::FlatMap;
 
 pub type Debrief = FlatMap<ParamKey, Option<String>>;
@@ -40,7 +40,7 @@ impl JailOperation {
     pub fn execute(&mut self) -> Result<Debrief, Error> {
         // Prevent running already executed operation
         if self.executed {
-            return Err(Error::StaleOperation);
+            return Err(Error::JailStaleOperation);
         }
         self.executed = true;
         match self.jp_get() {
@@ -99,7 +99,7 @@ impl JailOperation {
     }
     fn jp_get(&mut self) -> Result<(), Error> {
         if self.jps.len() < 2 {
-            return Err(Error::EmptyOperation);
+            return Err(Error::JailEmptyOperation);
         }
         let result = unsafe { raw::jailparam_set(self.jps.as_mut_ptr() as *mut c_void,
                                          self.jps.len() as c_uint, 0 as c_int) };
