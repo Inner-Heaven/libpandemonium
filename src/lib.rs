@@ -10,6 +10,7 @@
 extern crate time;
 extern crate libc;
 extern crate errno;
+extern crate flat_map;
 
 pub mod errors;
 pub mod helpers;

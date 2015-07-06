@@ -1,15 +1,18 @@
 use errno::{errno, set_errno, Errno};
 use libc::{c_char, c_int, size_t};
 #[derive(Debug)]
-pub struct Error {
-    pub klass:      i32,
-    pub message:     Option<String>
+pub enum Error {
+    FFI { klass:      i32,
+          message:     Option<String> },
+    StaleOperation,
+    EmptyOperation
 }
 impl Error {
-    pub fn last_error() -> Error {
+    pub fn last_error() -> Error{
         let e =errno();
         set_errno(e);
-        return Error {klass: e.0 as i32, message: errno_to_string(e)};
+        Error::FFI {klass: e.0 as i32,
+                    message: errno_to_string(e)}
     }
 }
 

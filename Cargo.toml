@@ -9,10 +9,13 @@ crate-type = ["rlib"]
 
 
 [dependencies]
-time = "0.1"
-libc = "0.1"
-errno = "*"
+time      = "0.1"
+libc      = "0.1"
+errno     = "*"
 libjail-sys = { path = "libjail-sys" }
+
+[dependencies.flat_map]
+git = "https://github.com/toffaletti/flat_map"
 
 [features]
 default = ["sysinfo", "jail"]

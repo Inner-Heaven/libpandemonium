@@ -5,35 +5,54 @@ use std::ops::Drop;
 use std::ptr;
 use libc::{c_uint, c_void, c_int};
 use errors::Error;
+use flat_map::FlatMap;
+
+pub type Debrief = FlatMap<ParamKey, Option<String>>;
 
 /// Safe interface for operation with jails
 pub struct JailOperation {
     /// Pointers to jailparams. never try to own them.
     jps:        Vec<*mut c_void>,
     /// After execution of operation it can't be reused.
-    executed:   bool
+    executed:   bool,
+    /// index used to create Debrief
+    index: Vec<ParamKey>
 }
 
 impl JailOperation {
+    /// Create empty operation
+    fn new() -> JailOperation {
+        JailOperation { jps: Vec::new(),
+                        executed: false,
+                        index: Vec::new() }
+
+    }
     /// Proper way of setting up Operation
-    pub fn new(name: String) -> Result<JailOperation, Error> {
-        let mut operation = JailOperation { jps: Vec::new(), executed: false };
+    pub fn with_name(name: String) -> Result<JailOperation, Error> {
+        let mut operation = JailOperation::new();
         match operation.add_jailparam_with_value(&ParamKey::Name, &name) {
             Ok(_)    => Ok(operation),
             Err(err) => Err(err)
         }
     }
-    /// executes read operation on jail and returns Vector of values for requested keys.
-    /// Values returned in the same order they were requested
-    pub fn get(&mut self) -> Result<Vec<Option<String>>, Error> {
+    /// executes read operation on jail and returns FlatMap with
+    /// all requested values and index
+    pub fn execute(&mut self) -> Result<Debrief, Error> {
+        // Prevent running already executed operation
+        if self.executed {
+            return Err(Error::StaleOperation);
+        }
+        self.executed = true;
         match self.jp_get() {
             Ok(_)   => {
-                let mut export = Vec::with_capacity(self.jps.len());
-                for jp in self.jps.iter() {
+                let mut debrief = FlatMap::with_capacity(self.jps.len());
+                for (idx, jp) in self.jps.iter().enumerate() {
                     let ptr = jp.clone();
-                    export.push(JailOperation::jp_export(ptr));
+                    debrief.insert(
+                        self.index.get(idx).unwrap().clone(),
+                        JailOperation::jp_export(ptr));
                 }
-                Ok(export)
+                Ok(debrief)
             },
             Err(err) => { Err(err) }
         }
@@ -61,6 +80,7 @@ impl JailOperation {
         match JailOperation::jp_for_value(&key, &value) {
             Ok(jp) => {
                 self.jps.push(jp);
+                self.index.push(key.clone());
                 Ok(())
             },
             Err(err) => { Err(err) }
@@ -71,6 +91,7 @@ impl JailOperation {
         match JailOperation::jp_for_key(key) {
             Ok(jp) => {
                 self.jps.push(jp);
+                self.index.push(key.clone());
                 Ok(())
             },
             Err(err) => { Err(err) }
@@ -78,8 +99,7 @@ impl JailOperation {
     }
     fn jp_get(&mut self) -> Result<(), Error> {
         if self.jps.len() < 2 {
-            let err = Error {klass: 12, message: Some("Empty operation list".to_string()) };
-            return Err(err);
+            return Err(Error::EmptyOperation);
         }
         let result = unsafe { raw::jailparam_set(self.jps.as_mut_ptr() as *mut c_void,
                                          self.jps.len() as c_uint, 0 as c_int) };
@@ -132,10 +152,12 @@ impl Drop for JailOperation {
         }
     }
 }
-
+#[derive(Clone, PartialEq, Eq, PartialOrd, Ord, Debug)]
 pub enum ParamKey {
     Name,
-    Hostname
+    Hostname,
+    LastJID,
+    JID
 }
 #[allow(unused_variables)]
 impl ParamKey {
@@ -143,6 +165,8 @@ impl ParamKey {
         match *self {
             ParamKey::Name      => return "name".to_string(),
             ParamKey::Hostname  => return "hostname".to_string(),
+            ParamKey::LastJID   => return "last_jid".to_string(),
+            ParamKey::JID       => return "jid".to_string()
         }
     }
 }
