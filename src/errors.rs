@@ -34,12 +34,12 @@ extern {
 }
 
 #[derive(Debug)]
-pub struct LibError<T: StdError> {
+pub struct LibError<T> {
     pub kind: T,
     pub detail: Option<String>
 }
 
-impl <T: StdError> LibError<T> {
+impl <T> LibError<T> {
     fn detail(&self) -> Option<String> {
         self.detail.clone()
     }
@@ -59,10 +59,11 @@ impl <T: StdError> fmt::Display for LibError<T> {
     }
 }
 
+/// Generic Error From FFI calls
 #[derive(Debug)]
 pub struct CError {
     pub kind: i32,
-    pub message: Option<String>
+    pub detail: Option<String>
 }
 impl StdError for CError {
     fn description(&self) -> &'static str {
