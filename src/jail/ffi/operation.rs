@@ -4,7 +4,7 @@ use std::ffi::{CString};
 use std::ops::Drop;
 use std::ptr;
 use libc::{c_uint, c_void, c_int};
-use errors::{Error;
+use errors::{Error};
 use flat_map::FlatMap;
 
 pub type Debrief = FlatMap<ParamKey, Option<String>>;
