@@ -10,7 +10,7 @@ crate-type = ["rlib"]
 
 [dependencies]
 time      = "0.1"
-libc      = "0.1"
+libc      = "0.2"
 errno     = "*"
 libjail-sys = { path = "libjail-sys" }
 
